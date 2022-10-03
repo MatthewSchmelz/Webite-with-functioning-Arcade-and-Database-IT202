@@ -17,7 +17,7 @@ function getDB(){
             $connection_string = "mysql:host=$dbhost;dbname=$dbdatabase;charset=utf8mb4";
             //using the PDO connector create a new connect to the DB
             //if no error occurs we're connected
-var_export($dbpass);
+
 
             $db = new PDO($connection_string, $dbuser, $dbpass);
 	    //the default fetch mode is FETCH_BOTH which returns the data as both an indexed array and associative array
