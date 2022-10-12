@@ -5,6 +5,9 @@ $a3 =[0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 01.01];
 $a4 =[10.01, -12.22, 0.23, 29.20, -5.13, 2.12];
 function getTotal($arr) {
 	//Matthew Schmelz, mws36, October 4, 2022
+	//Whats happening here is that I am looping though the list, adding the new
+	//amount to the $total variable. At the end I shave off the decimals by using
+	//the number_format command which also completes the extra credit.
     //use the $arr variable to iterate over
     echo "<br>Processing Array: <br> <pre>". var_export($arr, True) . "</pre>";
     $total = 0.00;
