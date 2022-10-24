@@ -2,7 +2,7 @@
 session_start();
 //session_start(); must be the very first line after the <?php otherwise $_SESSION does not persist 
 //Note: this is to resolve cookie issues with port numbers
-/*TODO 1
+//Todo 1
 $domain = $_SERVER["HTTP_HOST"];
 if (strpos($domain, ":")) {
     $domain = explode(":", $domain)[0];
@@ -26,32 +26,20 @@ if (($localWorks && $domain == "localhost") || $domain != "localhost") {
 //include functions here so we can have it on every page that uses the nav bar
 //that way we don't need to include so many other files on each page
 //nav will pull in functions and functions will pull in db
-*/
+
 require(__DIR__ . "/../lib/functions.php");
 ?>
 <nav>
     <ul>
-        <?php 
-//TODO 2        if (is_logged_in()) : 
-        ?> 
+        <?php if (is_logged_in()) : ?> 
             <li><a href="home.php">Home</a></li>
-        <?php 
-//TODO 2        endif; 
-        ?>
-        <?php 
-//TODO 2        if (!is_logged_in()) : 
-        ?>
+        <?php endif; ?>
+        <?php if (!is_logged_in()) : ?>
             <li><a href="login.php">Login</a></li>
             <li><a href="register.php">Register</a></li>
-        <?php 
-//TODO 2        endif; 
-        ?>
-        <?php 
-//TODO 2        if (is_logged_in()) : 
-        ?>
+        <?php endif; ?>
+        <?php if (is_logged_in()) : ?>
             <li><a href="logout.php">Logout</a></li>
-        <?php 
-//TODO 2        endif; 
-        ?>
+        <?php endif; ?>
     </ul> 
 </nav>
