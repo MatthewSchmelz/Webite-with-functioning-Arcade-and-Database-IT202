@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__ . "/../lib/functions.php");
-//TODO: 0.1: require_once(__DIR__ . "/../partials/nav.php");
+//TODO: 0.1: require_once(__DIR__ . "/../lib/functions.php");
+require_once(__DIR__ . "/../partials/nav.php");
 ?>
 <form onsubmit="return validate(this)" method="POST">
     <div>
@@ -73,7 +73,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
         $hasError = true;
     }
     if (!$hasError) {
-        echo "Welcome, $email";
+        // echo "Welcome, $email";
         $hash = password_hash($password, PASSWORD_BCRYPT);
         $db = getDB();
         $stmt = $db->prepare("INSERT INTO User (email, pwrdHash) VALUES(:email, :password)");
