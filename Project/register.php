@@ -8,8 +8,8 @@ reset_session();
         <input type="email" name="email" required />
     </div>
     <div>
-        <label for="username">Login Name</label>
-        <input type="text" name="username" required maxlength="30" />
+        <label for="logName">Login Name</label>
+        <input type="text" name="logName" required maxlength="30" />
     </div>
     <div>
         <label for="pw">Password</label>
@@ -31,11 +31,13 @@ reset_session();
 </script>
 <?php
 //TODO 2: add PHP Code
-if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm"]) && isset($_POST["username"])) {
+if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm"]) && isset($_POST["logName"])) {
     $email = se($_POST, "email", "", false);
     $password = se($_POST, "password", "", false);
     $confirm = se($_POST, "confirm", "", false);
-    $username = se($_POST, "username", "", false);
+    $logName = se($_POST, "logName", "", false);
+    
+
     //TODO 3
     $hasError = false;
     if (empty($email)) {
@@ -49,7 +51,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
         flash("Invalid email address", "danger");
         $hasError = true;
     }
-    if (!is_valid_username($username)) {
+    if (!preg_match('/^[a-z-9_-]{3,30}$/', $logName)) {
         flash("Login Name must only contain 3-16 characters a-z, 0-9, _, or -", "danger");
         $hasError = true;
     }
@@ -75,9 +77,9 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
         //TODO 4
         $hash = password_hash($password, PASSWORD_BCRYPT);
         $db = getDB();
-        $stmt = $db->prepare("INSERT INTO User (email, pwrdHash, logName) VALUES(:email, :password, :username)");
+        $stmt = $db->prepare("INSERT INTO User (email, pwrdHash, logName) VALUES(:email, :password, :logName)");
         try {
-            $stmt->execute([":email" => $email, ":password" => $hash, ":username" => $username]);
+            $stmt->execute([":email" => $email, ":password" => $hash, ":logName" => $logName]);
             flash("Successfully registered!", "success");
         } catch (Exception $e) {
             users_check_duplicate($e->errorInfo);
