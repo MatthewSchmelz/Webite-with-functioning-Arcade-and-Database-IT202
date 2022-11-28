@@ -204,6 +204,7 @@
             ball.x += ball.sX;//move in x coordinate
             ball.y += ball.sY;// move in y coordinate
             // Bounce the ball off the top/bottom
+            //Mws46, november 21
             if (ball.y < 0 || ball.y + ball.h > canvas.height) {
                 if(Math.random() < .2){
                     ball.sX *= -1;
