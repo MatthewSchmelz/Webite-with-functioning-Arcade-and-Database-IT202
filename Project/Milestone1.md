@@ -537,6 +537,6 @@ __SubTask 3:__ Prod Application Link to Login Page. Link must be from the NJIT w
 
 #### Required url pattern: https?://web.njit.edu/.+-prod.*
 
-> URL: 
+> URL: https://web.njit.edu/~mws36/mws36-prod/Project/login.php
 
 </ul> </ul>
