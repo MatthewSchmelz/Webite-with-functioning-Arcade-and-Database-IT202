@@ -1,6 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
+<?php
+require(__DIR__ . "/../partials/nav.php")
+?>
+<form onsubmit="return validate(this)" method="POST">
+    <div>
+        <label for="Sc">Submit Score</label>
+        <input type="Scores" id="Sc" name="Scores" />
+    </div>
+    <input type="submit" value="Submit" />
+</form>
+<?php
+$user =get_user_id(); 
+$Scores = se($_POST, "Scores", "", false);
+if($Scores != null){
+$db = getDB();
+$stmt = $db->prepare("INSERT INTO Scores (Scores, userID) VALUES(:Scores, :userID)");
+$stmt->execute([":Scores" => $Scores, ":userID"=> $user]);
+flash("Score Saved!", "success");
+}
+?>
+<div>
+    <h1 style="display: inline;">Angry Pong</h1>
+    <div class="col"><span id="score" class="lead">Score: 0</span></div>
+</div>
+    <canvas tabindex="0" id="board" width="600px" height="600px" ></canvas>
     <script>
         //modified from http://jsfiddle.net/bencentra/q1s8gmqv/?utm_source=website&utm_medium=embed&utm_campaign=q1s8gmqv
        
@@ -231,11 +253,22 @@
         function checkScore() {
             // Score if the ball goes past a paddle
             //left side of ball passes left side of paddle
+            //AI Score
             if (ball.x < leftPaddle.x) {
                 rightScore++;
+                //If AI scores 5 times, end/reset the game and save the score
+                if(rightScore > 5){
+
+                    //SAVE SCORE IN DB BEFORE RESET
+                    rightScore = 0;
+                    leftScore = 0;
+                    //Put Score into Table 6, UserScores
+        
+                }
                 resetBall();
             }
             //right side of ball passes right side of paddle 
+            //Player Score
             else if (ball.x + ball.w > rightPaddle.x + rightPaddle.w) {
                 leftScore++;
                 resetBall();
@@ -271,7 +304,8 @@
                 drawables[i].draw();
             }
         }
-    </script>
+        init();
+        </script>
     <style>
         canvas:focus{
             border: 3px solid black;
@@ -280,20 +314,5 @@
             border: 1px dotted black;
         }
     </style>
-</head>
 
-<body onload="init();">
-    <div>
-    <h1 style="display: inline;">AI Pong Sample</h1>
-    <h3 style="display: inline;"><a href="index.html">Back</a></h3>
-    </div>
-    <a href="http://bencentra.com/2017-07-11-basic-html5-canvas-games.html">Collection of Canvas based games by Ben
-        Centra</a>
-    <main>
-        <canvas tabindex="0" id="board" width="600px" height="600px" >
 
-        </canvas>
-    </main>
-</body>
-
-</html>
