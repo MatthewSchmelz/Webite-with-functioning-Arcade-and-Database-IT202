@@ -41,7 +41,7 @@ __SubTask 3:__ Add **screenshot** showing something of the game
 #### Make sure if the  **screenshot**  contains code that you have a relevant comment with your ucid, date, and explanation of what you're attempting, if not max grade for this item is 75%.
 #### Provide a Github URL to each **screenshot** you've uploaded with a caption
 > Screenshot:  ![pong](https://user-images.githubusercontent.com/113381682/207083398-319b82b4-1390-4916-88e7-91d572d0036a.PNG)
-
+A small screenshow of the modified pong game used for homework.
 </ul>
 
 __SubTask 4:__ Add the related pull request(s)
@@ -74,6 +74,8 @@ __SubTask 1:__ Add a **screenshot** showing a notice telling the user their scor
 #### Make sure if the  **screenshot**  contains code that you have a relevant comment with your ucid, date, and explanation of what you're attempting, if not max grade for this item is 75%.
 #### Provide a Github URL to each **screenshot** you've uploaded with a caption
 > Screenshot: ![score saved](https://user-images.githubusercontent.com/113381682/207087651-fa6397b9-331c-4b9a-9558-c58521aac1ce.PNG)
+Shows the score has been saved, doesn't appear on the Rage pong game itself, but whenever the user leaves the page, like how a game saves progress
+when the user leaves.
 
 
 </ul>
@@ -94,6 +96,7 @@ __SubTask 2:__ Add a **screenshot** showing your scores table with some score en
 ### Make sure if the **screenshot** contains code that you have a relevant comment with your ucid, date, and explanation of what you're attempting, if not max grade for this item is 75%.
 #### Provide a Github URL to each **screenshot** you've uploaded with a caption
 > Screenshot:   ![scor](https://user-images.githubusercontent.com/113381682/207086102-4334a607-8762-4976-b953-6a329b6fb54f.PNG)
+The Scores Table with Primary ID, user ID/Null(if anonymous), their score, and the date created and modified.
 
 
 </ul>
@@ -135,6 +138,8 @@ __SubTask 1:__ Add a **screenshot** showing the latest scores for the user from 
 #### Provide a Github URL to each **screenshot** you've uploaded with a caption
 > Screenshot:  ![last10](https://user-images.githubusercontent.com/113381682/207087964-35157781-a76b-474f-a8a3-b939bc3c1bbc.PNG)
 97b9-331c-4b9a-9558-c58521aac1ce.PNG)
+Last 10 scores for the 'Alpharius' Profile, there arent 10 scores on the account because I didn't play the game 10 times on the account,
+Should still work for more then 10 scores however due to the LIMIT imposed.
 
 </ul>
 
@@ -186,6 +191,7 @@ __SubTask 1:__ Add one or more **screenshots** showing the function(s)
 #### Make sure if the **screenshot** contains code that you have a relevant comment with your ucid, date, and explanation of what you're attempting, if not max grade for this item is 75%.
 #### Provide a Github URL to each **screenshot** you've uploaded with a caption
 > Screenshot(s):![querey](https://user-images.githubusercontent.com/113381682/207089962-d8ac9991-dba8-44e2-ab11-0f4d4ed844b9.PNG)
+The Select call for the Leaderboards.
 
 
 </ul>
@@ -231,7 +237,7 @@ __SubTask 1:__ Add a **screenshot** showing the scoreboads, the link to the game
 #### Make sure if the **screenshot** contains code that you have a relevant comment with your ucid, date, and explanation of what you're attempting, if not max grade for this item is 75%.
 #### Provide a Github URL to each **screenshot** you've uploaded with a caption
 > Screenshot:   ![Rage](https://user-images.githubusercontent.com/113381682/207090725-36ab94c2-7693-432a-bed4-5cd0dea2f0bf.PNG)
-
+The Complete homepage for milestone2, showing the homepage, link to the game, and the leaderboards
 
 </ul>
 
@@ -285,7 +291,8 @@ __SubTask 1:__ Add **screenshots** showing which issues are done/closed (project
 
 #### Make sure if the **screenshot** contains code that you have a relevant comment with your ucid, date, and explanation of what you're attempting, if not max grade for this item is 75%.
 #### Provide a Github URL to each **screenshot** you've uploaded with a caption
-> Screenshot(s):
+> Screenshot(s): ![projectmile2](https://user-images.githubusercontent.com/113381682/207092830-70869842-e2ff-4bfb-a502-1a132e865590.PNG)
+Everything beneath flash messages are the completed issues for milestone2
 
 </ul>
 
