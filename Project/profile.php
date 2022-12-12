@@ -145,4 +145,63 @@ $logName = get_username();
 </script>
 <?php
 require_once(__DIR__ . "/../partials/flash.php");
+// Attempting to Add Score Table Beneath this
+$guy = get_user_id();
+$query = "SELECT Scores, modified from Scores WHERE userID = $guy";
+$params = null;
+if (isset($_POST["role"])) {
+    $search = se($_POST, "role", "", false);
+    $query .= " WHERE name LIKE :role";
+    $params =  [":role" => "%$search%"];
+}
+$query .= " ORDER BY modified LIMIT 10";
+$db = getDB();
+$stmt = $db->prepare($query);
+$roles = [];
+try {
+    $stmt->execute($params);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($results) {
+        $roles = $results;
+    } else {
+        flash("No matches found", "warning");
+    }
+} catch (PDOException $e) {
+    flash(var_export($e->errorInfo, true), "danger");
+}
+
+?>
+
+<table>
+    <thead>
+        <th>Score</th>
+        <th>Date Played</th>
+    </thead>
+    <tbody>
+        <?php if (empty($roles)) : ?>
+            <tr>
+                <td colspan="100%">No Games Played</td>
+            </tr>
+        <?php else : ?>
+            <?php foreach ($roles as $role) : ?>
+                <tr>
+                    <td><?php se($role, "Scores"); ?></td>
+                    <td><?php se($role, "modified"); ?></td>
+                    <td>
+                        <form method="POST">
+                            <input type="hidden" name="roleID" value="<?php se($role, 'id'); ?>" />
+                            <?php if (isset($search) && !empty($search)) : ?>
+                                <?php /* if this is part of a search, lets persist the search criteria so it reloads correctly*/ ?>
+                                <input type="hidden" name="role" value="<?php se($search, null); ?>" />
+                            <?php endif; ?>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </tbody>
+</table>
+<?php
+//note we need to go up 1 more directory
+require_once(__DIR__ . "/../partials/flash.php");
 ?>
