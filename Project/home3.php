@@ -17,7 +17,7 @@ if (is_logged_in(true)) {
 <?php
 require(__DIR__ . "/../partials/flash.php");
 // Attempting to Add Score Table Beneath this
-$query = "SELECT Scores, modified from Scores where modified <= CURRENT_DATE() AND modified >=DATE_SUB(CURRENT_DATE(), INTERVAL 365 DAY)";
+$query = "SELECT Scores, modified from Scores where modified <= CURRENT_DATE() AND modified >=DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)";
 
 $params = null;
 if (isset($_POST["role"])) {
@@ -43,7 +43,7 @@ try {
 ?>
 <table>
     <thead>
-        <h1>Leaderboards: Yearly</h1>
+        <h1>Leaderboards: Weekly</h1>
         <th>Score</th>
         <th>Date Played</th>
     </thead>
