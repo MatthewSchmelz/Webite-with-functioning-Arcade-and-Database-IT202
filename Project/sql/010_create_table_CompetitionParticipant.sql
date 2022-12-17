@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS CompetitionParticipant(
+    id int AUTO_INCREMENT PRIMARY KEY,
+    compID int,
+    userID int,
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+    CONSTRAINT Only_One UNIQUE (compID, userID),
+    FOREIGN KEY(UserID) REFERENCES User(id),
+    FOREIGN KEY(CompID) REFERENCES Competition(id)
+)

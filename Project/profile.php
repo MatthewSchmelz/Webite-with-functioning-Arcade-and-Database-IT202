@@ -163,16 +163,52 @@ try {
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if ($results) {
         $roles = $results;
-    } else {
-        flash("No matches found", "warning");
     }
 } catch (PDOException $e) {
     flash(var_export($e->errorInfo, true), "danger");
 }
-
+//Showing Credits on user profile
+$guy = get_user_id();
+$query = "SELECT Credits from User WHERE id = $guy";
+$params = null;
+if (isset($_POST["role"])) {
+    $search = se($_POST, "role", "", false);
+    $query .= " WHERE name LIKE :role";
+    $params =  [":role" => "%$search%"];
+}
+$query .= " ORDER BY modified LIMIT 10";
+$db = getDB();
+$stmt = $db->prepare($query);
+$creds = [];
+try {
+    $stmt->execute($params);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($results) {
+        $creds = $results;
+    } 
+} catch (PDOException $e) {
+    flash(var_export($e->errorInfo, true), "danger");
+}
 ?>
+<table>
+    <header>
+    <?php if (empty($creds)) : ?>
+            <thread>
+                <td colspan="100%">No Credits</td>
+            </thread>
+        <?php else : ?>
+            <?php foreach ($creds as $cred) : ?>
+                <tr>
+                    <td> Credits: <?php se($cred, "Credits"); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </header>
+</table>
+
 
 <table>
+    
     <thead>
         <th>Score</th>
         <th>Date Played</th>

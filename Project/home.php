@@ -17,6 +17,7 @@ if (is_logged_in(true)) {
 <?php
 require(__DIR__ . "/../partials/flash.php");
 // Attempting to Add Score Table Beneath this
+//MWS36, December 12 2022
 $query = "SELECT Scores, modified from Scores where modified <= CURRENT_DATE() AND modified >=DATE_SUB(CURRENT_DATE(), INTERVAL 365 DAY)";
 
 $params = null;
@@ -34,9 +35,7 @@ try {
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if ($results) {
         $roles = $results;
-    } else {
-        flash("No matches found", "warning");
-    }
+    } 
 } catch (PDOException $e) {
     flash(var_export($e->errorInfo, true), "danger");
 }
