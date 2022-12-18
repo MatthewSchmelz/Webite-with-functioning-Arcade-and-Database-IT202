@@ -144,8 +144,10 @@ __SubTask 1:__ Add a **screenshot** showing the Competitions table with valid re
 
 #### Make sure if the **screenshot** contains code that you have a relevant comment with your ucid, date, and explanation of what you're attempting, if not max grade for this item is 75%.
 #### Provide a Github URL to each **screenshot** you've uploaded with a caption
-> Screenshot:  ![Credit](https://user-images.githubusercontent.com/113381682/208269364-b0aeb540-a013-44c3-9748-893114f59806.PNG)
-Credit history Table exists, but is unused due to time constraints, Would be able to add this by inserting a record into the table every time a user's credits is modified.
+> Screenshot: 
+![competiitons1](https://user-images.githubusercontent.com/113381682/208278497-30559ddc-9937-4a38-92c1-f25c1c2db831.PNG)
+![comp2](https://user-images.githubusercontent.com/113381682/208278495-b883a0e4-affb-401f-a99f-121efc7877e1.PNG)
+The table shows multiple competitions with all valid data being filled out, look at any of the records.
 
 </ul>
 
