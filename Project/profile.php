@@ -168,24 +168,17 @@ try {
     flash(var_export($e->errorInfo, true), "danger");
 }
 //Showing Credits on user profile
+//MWS36 December 17, 2022
+//
 $guy = get_user_id();
 $query = "SELECT Credits from User WHERE id = $guy";
-$params = null;
-if (isset($_POST["role"])) {
-    $search = se($_POST, "role", "", false);
-    $query .= " WHERE name LIKE :role";
-    $params =  [":role" => "%$search%"];
-}
 $query .= " ORDER BY modified LIMIT 10";
 $db = getDB();
 $stmt = $db->prepare($query);
 $creds = [];
 try {
-    $stmt->execute($params);
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    if ($results) {
-        $creds = $results;
-    } 
+    $stmt->execute();
+    $creds = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     flash(var_export($e->errorInfo, true), "danger");
 }

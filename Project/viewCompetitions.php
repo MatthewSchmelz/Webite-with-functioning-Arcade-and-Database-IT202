@@ -26,10 +26,14 @@ if (isset($_POST["compID"])) {
         if( $creds >= $Fee ){
             //gets new credit value
             $endCreds = $creds - ($Fee);
-            //Update the User's credits to the new, lesser value
-            $updatequeryFee = "UPDATE User SET Credits = :endCreds WHERE id = :user";
-            $stmtUpdateFee= $db->prepare($updatequeryFee);
-            $stmtUpdateFee->execute([":endCreds" => $endCreds, ":user" => $user]);
+            //MWS36 December 17, 2022
+            //Getting new value for the Reward of the Competition
+            $Rquery = "SELECT currentReward FROM Competition WHERE id = $compID";
+            $stmtReward = $db->prepare($Rquery);
+            $stmtReward->execute();
+            $Rewards = $stmtReward->fetch(PDO::FETCH_ASSOC);
+            $Rewards = $Rewards['currentReward'];
+            $Rewards = $Rewards * 1.5;
             //Placing User into Competition
             $stmt = $db->prepare("INSERT INTO CompetitionParticipant (compID, userID) VALUES(:compID, :userID)");
             try {
@@ -38,18 +42,28 @@ if (isset($_POST["compID"])) {
                 $updatequery = "UPDATE Competition c INNER JOIN CompetitionParticipant cp ON c.id = cp.compID SET c.currentParticipants = c.currentParticipants + 1 WHERE cp.compID = :compID";
                 $stmtUpdate = $db->prepare($updatequery);
                 $stmtUpdate->execute([":compID" => $compID]);
+                //Updating the Reward Value
+                $updatequeryReward = "UPDATE Competition SET currentReward = :currentReward WHERE id = :id";
+                $stmtUpdateReward= $db->prepare($updatequeryReward);
+                $stmtUpdateReward->execute([":currentReward" => $Rewards, ":id" => $compID]);
+                //Update the User's credits to the new, lesser value
+                $updatequeryFee = "UPDATE User SET Credits = :endCreds WHERE id = :user";
+                $stmtUpdateFee= $db->prepare($updatequeryFee);
+                $stmtUpdateFee->execute([":endCreds" => $endCreds, ":user" => $user]);
+
             
             } catch (PDOException $e) {
                 flash("Already joined this Competition!", "danger");
             }
         } else {
-            flash("Not enough credits to create competition","danger");
+            flash("Not enough credits to join competition","danger");
         }
         
     }
 }
 //LISTS COMPETITIONS
-$query = "SELECT id, name, expires,currentReward,joinFee,currentParticipants from Competition";
+//MWS36 December 17,2022
+$query = "SELECT id, name, expires,currentReward,joinFee,currentParticipants from Competition WHERE expires > CURRENT_TIMESTAMP";
 $params = null;
 if (isset($_POST["role"])) {
     $search = se($_POST, "role", "", false);
