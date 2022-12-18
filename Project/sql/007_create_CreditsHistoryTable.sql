@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS `CreditsHistory` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `userID` int,
+    `CreditDiff` int,
+    `reason` varchar(20),
+    `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`userID`) REFERENCES User(`id`)
+)

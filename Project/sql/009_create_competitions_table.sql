@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS Competition(
+    id int AUTO_INCREMENT PRIMARY KEY,
+    name varchar(240) not null,
+    duration int DEFAULT 3,  
+    expires TIMESTAMP DEFAULT (DATE_ADD(CURRENT_TIMESTAMP, INTERVAL duration DAY)),
+    startingReward int DEFAULT 1,
+    currentReward int DEFAULT (startingReward),
+    joinFee int default 1,
+    currentParticipants int DEFAULT 0,
+    minParticipants int DEFAULT 3,
+    paidOut boolean DEFAULT false,
+    didCalc boolean DEFAULT false,
+    minScore int DEFAULT 1,
+    firstPlacePer int,
+    secondPlacePer int,
+    thirdPlacePer int,
+    cost2create int DEFAULT 1,
+    createdBy int,
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+    FOREIGN KEY(createdBy) REFERENCES User(id)
+)
